@@ -318,7 +318,7 @@ class Elasticsearch(object):
         return self.transport.perform_request('POST' if id in SKIP_IN_PATH else 'PUT',
             _make_path(index, doc_type, id), params=params, body=body)
 
-    @query_params('_source', '_source_exclude', '_source_include', 'parent',
+    @query_params('_source', '_source_exclude', '_source_includes', 'parent',
         'preference', 'realtime', 'refresh', 'routing', 'stored_fields',
         'version', 'version_type')
     def exists(self, index, doc_type, id, params=None):
@@ -334,7 +334,7 @@ class Elasticsearch(object):
             list of fields to return
         :arg _source_exclude: A list of fields to exclude from the returned
             _source field
-        :arg _source_include: A list of fields to extract and return from the
+        :arg _source_includes: A list of fields to extract and return from the
             _source field
         :arg parent: The ID of the parent document
         :arg preference: Specify the node or shard the operation should be
@@ -356,7 +356,7 @@ class Elasticsearch(object):
         return self.transport.perform_request('HEAD', _make_path(index,
             doc_type, id), params=params)
 
-    @query_params('_source', '_source_exclude', '_source_include', 'parent',
+    @query_params('_source', '_source_exclude', '_source_includes', 'parent',
         'preference', 'realtime', 'refresh', 'routing', 'version',
         'version_type')
     def exists_source(self, index, doc_type, id, params=None):
@@ -371,7 +371,7 @@ class Elasticsearch(object):
             list of fields to return
         :arg _source_exclude: A list of fields to exclude from the returned
             _source field
-        :arg _source_include: A list of fields to extract and return from the
+        :arg _source_includes: A list of fields to extract and return from the
             _source field
         :arg parent: The ID of the parent document
         :arg preference: Specify the node or shard the operation should be
@@ -391,7 +391,7 @@ class Elasticsearch(object):
         return self.transport.perform_request('HEAD', _make_path(index,
             doc_type, id, '_source'), params=params)
 
-    @query_params('_source', '_source_exclude', '_source_include', 'parent',
+    @query_params('_source', '_source_exclude', '_source_includes', 'parent',
         'preference', 'realtime', 'refresh', 'routing', 'stored_fields',
         'version', 'version_type')
     def get(self, index, doc_type, id, params=None):
@@ -407,7 +407,7 @@ class Elasticsearch(object):
             list of fields to return
         :arg _source_exclude: A list of fields to exclude from the returned
             _source field
-        :arg _source_include: A list of fields to extract and return from the
+        :arg _source_includes: A list of fields to extract and return from the
             _source field
         :arg parent: The ID of the parent document
         :arg preference: Specify the node or shard the operation should be
@@ -429,7 +429,7 @@ class Elasticsearch(object):
         return self.transport.perform_request('GET', _make_path(index,
             doc_type, id), params=params)
 
-    @query_params('_source', '_source_exclude', '_source_include', 'parent',
+    @query_params('_source', '_source_exclude', '_source_includes', 'parent',
         'preference', 'realtime', 'refresh', 'routing', 'version',
         'version_type')
     def get_source(self, index, doc_type, id, params=None):
@@ -445,7 +445,7 @@ class Elasticsearch(object):
             list of fields to return
         :arg _source_exclude: A list of fields to exclude from the returned
             _source field
-        :arg _source_include: A list of fields to extract and return from the
+        :arg _source_includes: A list of fields to extract and return from the
             _source field
         :arg parent: The ID of the parent document
         :arg preference: Specify the node or shard the operation should be
@@ -465,7 +465,7 @@ class Elasticsearch(object):
         return self.transport.perform_request('GET', _make_path(index,
             doc_type, id, '_source'), params=params)
 
-    @query_params('_source', '_source_exclude', '_source_include', 'preference',
+    @query_params('_source', '_source_exclude', '_source_includes', 'preference',
         'realtime', 'refresh', 'routing', 'stored_fields')
     def mget(self, body, index=None, doc_type=None, params=None):
         """
@@ -481,7 +481,7 @@ class Elasticsearch(object):
             list of fields to return
         :arg _source_exclude: A list of fields to exclude from the returned
             _source field
-        :arg _source_include: A list of fields to extract and return from the
+        :arg _source_includes: A list of fields to extract and return from the
             _source field
         :arg preference: Specify the node or shard the operation should be
             performed on (default: random)
@@ -498,7 +498,7 @@ class Elasticsearch(object):
         return self.transport.perform_request('GET', _make_path(index,
             doc_type, '_mget'), params=params, body=body)
 
-    @query_params('_source', '_source_exclude', '_source_include', 'fields',
+    @query_params('_source', '_source_exclude', '_source_includes', 'fields',
         'lang', 'parent', 'refresh', 'retry_on_conflict', 'routing', 'timeout',
         'timestamp', 'ttl', 'version', 'version_type', 'wait_for_active_shards')
     def update(self, index, doc_type, id, body=None, params=None):
@@ -514,7 +514,7 @@ class Elasticsearch(object):
             list of fields to return
         :arg _source_exclude: A list of fields to exclude from the returned
             _source field
-        :arg _source_include: A list of fields to extract and return from the
+        :arg _source_includes: A list of fields to extract and return from the
             _source field
         :arg fields: A comma-separated list of fields to return in the response
         :arg lang: The script language (default: painless)
@@ -546,7 +546,7 @@ class Elasticsearch(object):
         return self.transport.perform_request('POST', _make_path(index,
             doc_type, id, '_update'), params=params, body=body)
 
-    @query_params('_source', '_source_exclude', '_source_include',
+    @query_params('_source', '_source_exclude', '_source_includes',
         'allow_no_indices', 'allow_partial_search_results', 'analyze_wildcard',
         'analyzer', 'batched_reduce_size', 'default_operator', 'df',
         'docvalue_fields', 'expand_wildcards', 'explain', 'from_',
@@ -570,7 +570,7 @@ class Elasticsearch(object):
             list of fields to return
         :arg _source_exclude: A list of fields to exclude from the returned
             _source field
-        :arg _source_include: A list of fields to extract and return from the
+        :arg _source_includes: A list of fields to extract and return from the
             _source field
         :arg allow_no_indices: Whether to ignore if a wildcard indices
             expression resolves into no concrete indices. (This includes `_all`
@@ -659,7 +659,7 @@ class Elasticsearch(object):
         return self.transport.perform_request('GET', _make_path(index,
             doc_type, '_search'), params=params, body=body)
 
-    @query_params('_source', '_source_exclude', '_source_include',
+    @query_params('_source', '_source_exclude', '_source_includes',
         'allow_no_indices', 'analyze_wildcard', 'analyzer', 'conflicts',
         'default_operator', 'df', 'expand_wildcards', 'from_',
         'ignore_unavailable', 'lenient', 'pipeline', 'preference', 'q',
@@ -681,7 +681,7 @@ class Elasticsearch(object):
             list of fields to return
         :arg _source_exclude: A list of fields to exclude from the returned
             _source field
-        :arg _source_include: A list of fields to extract and return from the
+        :arg _source_includes: A list of fields to extract and return from the
             _source field
         :arg allow_no_indices: Whether to ignore if a wildcard indices
             expression resolves into no concrete indices. (This includes `_all`
@@ -795,7 +795,7 @@ class Elasticsearch(object):
         return self.transport.perform_request('POST', _make_path('_reindex',
             task_id, '_rethrottle'), params=params)
 
-    @query_params('_source', '_source_exclude', '_source_include',
+    @query_params('_source', '_source_exclude', '_source_includes',
         'allow_no_indices', 'analyze_wildcard', 'analyzer', 'conflicts',
         'default_operator', 'df', 'expand_wildcards', 'from_',
         'ignore_unavailable', 'lenient', 'preference', 'q', 'refresh',
@@ -817,7 +817,7 @@ class Elasticsearch(object):
             list of fields to return
         :arg _source_exclude: A list of fields to exclude from the returned
             _source field
-        :arg _source_include: A list of fields to extract and return from the
+        :arg _source_includes: A list of fields to extract and return from the
             _source field
         :arg allow_no_indices: Whether to ignore if a wildcard indices
             expression resolves into no concrete indices. (This includes `_all`
@@ -952,7 +952,7 @@ class Elasticsearch(object):
         return self.transport.perform_request('GET', _make_path(index,
             doc_type, '_search', 'template'), params=params, body=body)
 
-    @query_params('_source', '_source_exclude', '_source_include',
+    @query_params('_source', '_source_exclude', '_source_includes',
         'analyze_wildcard', 'analyzer', 'default_operator', 'df', 'lenient',
         'parent', 'preference', 'q', 'routing', 'stored_fields')
     def explain(self, index, doc_type, id, body=None, params=None):
@@ -970,7 +970,7 @@ class Elasticsearch(object):
             list of fields to return
         :arg _source_exclude: A list of fields to exclude from the returned
             _source field
-        :arg _source_include: A list of fields to extract and return from the
+        :arg _source_includes: A list of fields to extract and return from the
             _source field
         :arg analyze_wildcard: Specify whether wildcards and prefix queries in
             the query string query should be analyzed (default: false)
@@ -1111,7 +1111,7 @@ class Elasticsearch(object):
         return self.transport.perform_request('GET', _make_path(index,
             doc_type, '_count'), params=params, body=body)
 
-    @query_params('_source', '_source_exclude', '_source_include', 'fields',
+    @query_params('_source', '_source_exclude', '_source_includes', 'fields',
         'pipeline', 'refresh', 'routing', 'timeout', 'wait_for_active_shards')
     def bulk(self, body, index=None, doc_type=None, params=None):
         """
@@ -1130,7 +1130,7 @@ class Elasticsearch(object):
             request
         :arg _source_exclude: Default list of fields to exclude from the
             returned _source field, can be overridden on each sub-request
-        :arg _source_include: Default list of fields to extract and return from
+        :arg _source_includes: Default list of fields to extract and return from
             the _source field, can be overridden on each sub-request
         :arg fields: Default comma-separated list of fields to return in the
             response for updates, can be overridden on each sub-request
